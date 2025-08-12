@@ -10,7 +10,7 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
-    <Card className="overflow-hidden h-full">
+    <Card className="overflow-hidden h-full hover-scale animate-fade-in transition-transform">
       <img
         src={product.image}
         alt={product.alt}

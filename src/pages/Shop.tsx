@@ -20,7 +20,7 @@ const Shop = () => {
   }));
 
   return (
-    <main className="container mx-auto py-10">
+    <main className="container mx-auto py-10 animate-fade-in">
       <SEO
         title="Shop Travel eBooks | WanderPages"
         description="Browse premium travel eBooks covering Europe, Japan, Maldives, and more. Instant download, expert authors."
