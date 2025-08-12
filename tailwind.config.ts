@@ -18,6 +18,21 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: [
+					"Poppins",
+					"ui-sans-serif",
+					"system-ui",
+					"-apple-system",
+					"Segoe UI",
+					"Roboto",
+					"Noto Sans",
+					"Ubuntu",
+					"Cantarell",
+					"Helvetica Neue",
+					"sans-serif"
+				]
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
