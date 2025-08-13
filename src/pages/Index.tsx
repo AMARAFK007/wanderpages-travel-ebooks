@@ -32,48 +32,103 @@ const Index = () => {
         jsonLd={orgJsonLd}
       />
 
-      <section className="container mx-auto grid md:grid-cols-2 gap-8 py-12 items-center animate-enter">
-        <div className="space-y-6">
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight animate-fade-in">Explore Smarter with WanderPages</h1>
-          <p className="text-lg text-muted-foreground">Expertly crafted travel eBooks with insider tips, detailed itineraries, and instant download. Trusted by thousands of travelers.</p>
-          <div className="flex gap-3">
-            <Link to="/shop"><Button size="lg">Shop Travel eBooks Now</Button></Link>
-            <Link to="/about"><Button variant="outline" size="lg">About Us</Button></Link>
+      <section className="container mx-auto py-16 px-6 animate-enter">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-5xl md:text-6xl font-bold leading-tight text-foreground animate-fade-in">
+                Discover the World 
+                <span className="text-primary block">One Page at a Time</span>
+              </h1>
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                Expert-crafted travel guides with insider secrets, detailed itineraries, and instant downloads. 
+                Join thousands of smart travelers who trust WanderPages.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link to="/shop">
+                <Button className="airbnb-button bg-primary hover:bg-primary/90 text-white text-lg px-8 py-4 shadow-md w-full sm:w-auto">
+                  Explore Travel Guides
+                </Button>
+              </Link>
+              <Link to="/about">
+                <Button variant="outline" className="airbnb-button border-2 border-gray-300 hover:border-primary text-lg px-8 py-4 w-full sm:w-auto">
+                  Learn More
+                </Button>
+              </Link>
+            </div>
           </div>
-        </div>
-        <div className="grid grid-cols-3 md:grid-cols-3 gap-3">
-          <img src={santorini} alt="Santorini sunset travel hero image" className="rounded-md object-cover h-40 md:h-56 w-full hover-scale animate-fade-in" loading="lazy" />
-          <img src={japan} alt="Tokyo neon street at night travel hero image" className="rounded-md object-cover h-40 md:h-56 w-full hover-scale animate-fade-in" loading="lazy" />
-          <img src={maldives} alt="Maldives tropical aerial travel hero image" className="rounded-md object-cover h-40 md:h-56 w-full hover-scale animate-fade-in" loading="lazy" />
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-4">
+              <img 
+                src={santorini} 
+                alt="Santorini sunset travel hero image" 
+                className="w-full h-64 object-cover rounded-2xl airbnb-card animate-fade-in" 
+                loading="lazy" 
+              />
+              <img 
+                src={maldives} 
+                alt="Maldives tropical aerial travel hero image" 
+                className="w-full h-48 object-cover rounded-2xl airbnb-card animate-fade-in" 
+                loading="lazy" 
+              />
+            </div>
+            <div className="pt-8">
+              <img 
+                src={japan} 
+                alt="Tokyo neon street at night travel hero image" 
+                className="w-full h-80 object-cover rounded-2xl airbnb-card animate-fade-in" 
+                loading="lazy" 
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="container mx-auto py-10 animate-fade-in">
-        <h2 className="text-2xl font-semibold mb-6">Featured eBooks</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featured.map((p) => (
-            <ProductCard key={p.id} product={p} />
-          ))}
+      <section className="bg-gray-50 py-16">
+        <div className="container mx-auto px-6 animate-fade-in">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Featured Travel Guides</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Handpicked destinations and expertly crafted guides to inspire your next adventure
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featured.map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="container mx-auto py-10 animate-fade-in">
-        <h2 className="text-2xl font-semibold mb-6">Why Choose WanderPages</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-6 border rounded-lg bg-card hover-scale transition-transform">
-            <Download className="mb-3" />
-            <h3 className="font-medium mb-1">Instant Download</h3>
-            <p className="text-sm text-muted-foreground">Get your eBooks immediately after purchase and start planning today.</p>
+      <section className="container mx-auto py-16 px-6 animate-fade-in">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Why Travelers Choose WanderPages</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Everything you need to turn your travel dreams into unforgettable journeys
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="airbnb-card p-8 bg-white text-center">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Download className="w-8 h-8 text-primary" />
+            </div>
+            <h3 className="text-xl font-semibold mb-3 text-foreground">Instant Access</h3>
+            <p className="text-muted-foreground leading-relaxed">Download your guides immediately and start planning your adventure right away, from anywhere in the world.</p>
           </div>
-          <div className="p-6 border rounded-lg bg-card hover-scale transition-transform">
-            <BookOpen className="mb-3" />
-            <h3 className="font-medium mb-1">Expert Authors</h3>
-            <p className="text-sm text-muted-foreground">Our guides are written by seasoned travelers with on-the-ground insights.</p>
+          <div className="airbnb-card p-8 bg-white text-center">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <BookOpen className="w-8 h-8 text-primary" />
+            </div>
+            <h3 className="text-xl font-semibold mb-3 text-foreground">Expert Insights</h3>
+            <p className="text-muted-foreground leading-relaxed">Written by experienced travelers who've explored every corner of these destinations and share their secrets.</p>
           </div>
-          <div className="p-6 border rounded-lg bg-card hover-scale transition-transform">
-            <Users className="mb-3" />
-            <h3 className="font-medium mb-1">Trusted by Thousands</h3>
-            <p className="text-sm text-muted-foreground">Join a community of explorers who rely on WanderPages for smarter trips.</p>
+          <div className="airbnb-card p-8 bg-white text-center">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Users className="w-8 h-8 text-primary" />
+            </div>
+            <h3 className="text-xl font-semibold mb-3 text-foreground">Trusted Community</h3>
+            <p className="text-muted-foreground leading-relaxed">Join thousands of smart travelers who rely on our guides for memorable, stress-free journeys.</p>
           </div>
         </div>
       </section>
