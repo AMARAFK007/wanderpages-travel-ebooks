@@ -14,7 +14,7 @@ const Contact = () => {
     e.preventDefault();
     const subject = encodeURIComponent(`WanderPages enquiry from ${name || "Website Visitor"}`);
     const body = encodeURIComponent(`${message}\n\n— ${name}\n${email}`);
-    const mailto = `mailto:aezoraenterprises@gmail.com?subject=${subject}&body=${body}`;
+    const mailto = `mailto:aexoraenterprises@gmail.com?subject=${subject}&body=${body}`;
     window.location.href = mailto;
     toast.success("Opening your email app to send the message.");
   };
@@ -46,7 +46,7 @@ const Contact = () => {
         <aside className="space-y-3">
           <div>
             <h2 className="text-lg font-semibold">Support</h2>
-            <p className="text-sm text-muted-foreground">Email: <a className="underline" href="mailto:aezoraenterprises@gmail.com">aezoraenterprises@gmail.com</a></p>
+            <p className="text-sm text-muted-foreground">Email: <a className="underline" href="mailto:aexoraenterprises@gmail.com">aexoraenterprises@gmail.com</a></p>
             <p className="text-sm text-muted-foreground">Phone: <a className="underline" href="tel:+918260258997">+91-8260258997</a></p>
           </div>
           <p className="text-sm text-muted-foreground">We typically respond within 24–48 hours.</p>
