@@ -45,7 +45,7 @@ serve(async (req) => {
     };
 
     // Create signature for Cryptomus API
-    const dataString = Buffer.from(JSON.stringify(paymentData)).toString('base64');
+    const dataString = btoa(JSON.stringify(paymentData));
     const signature = await crypto.subtle.importKey(
       'raw',
       new TextEncoder().encode(apiKey),

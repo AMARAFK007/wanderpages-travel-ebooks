@@ -26,7 +26,7 @@ serve(async (req) => {
 
     // Verify the webhook signature
     const receivedSign = req.headers.get('sign');
-    const dataString = Buffer.from(JSON.stringify(webhookData)).toString('base64');
+    const dataString = btoa(JSON.stringify(webhookData));
     
     const expectedSignature = await crypto.subtle.importKey(
       'raw',
