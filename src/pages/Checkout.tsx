@@ -5,7 +5,7 @@ import { ebooks } from "@/data/ebooks";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { ArrowLeft, Lock, Shield, Zap, Star, Sparkles, Bitcoin } from "lucide-react";
+import { ArrowLeft, Lock, Shield, Zap, Star, Sparkles } from "lucide-react";
 
 const Checkout = () => {
   const [params] = useSearchParams();
@@ -44,14 +44,6 @@ const Checkout = () => {
     }
 
     setIsProcessing(true);
-    
-    if (selectedMethod === "nowpayments") {
-      toast.success("Redirecting to NOWPayments...");
-      // Redirect to NOWPayments
-      window.open("https://nowpayments.io/payment/?iid=6219674887&source=button", "_blank", "noreferrer noopener");
-      setIsProcessing(false);
-      return;
-    }
     
     await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate processing
     toast.success("Redirecting to secure payment...");
@@ -281,55 +273,6 @@ const Checkout = () => {
                   </div>
                 </div>
 
-                {/* NOWPayments Card */}
-                <div 
-                  className={`p-6 rounded-2xl cursor-pointer transition-all duration-300 relative ${
-                    selectedMethod === "nowpayments" 
-                      ? "bg-white/10 border-2 border-blue-400 ring-2 ring-blue-400/20" 
-                      : "bg-white/5 border border-white/10 hover:bg-white/8"
-                  }`}
-                  onClick={() => setSelectedMethod("nowpayments")}
-                >
-                  {/* Best Deal Badge */}
-                  <div className="absolute -top-2 -right-2 bg-emerald-500 text-black text-xs font-bold px-3 py-1 rounded-full">
-                    BEST DEAL
-                  </div>
-                  
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 bg-gradient-to-br from-gray-800 to-black rounded-xl flex items-center justify-center border border-white/10">
-                        <Bitcoin className="w-8 h-8 text-orange-400" />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="font-bold text-lg text-orange-400">NOWPayments</span>
-                          <span className="text-white/50 text-sm">• Crypto payments</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className="font-semibold text-lg">$12.99</span>
-                          <span className="text-emerald-400 text-sm font-medium">Save $2.00</span>
-                        </div>
-                        <div className="flex items-center gap-2 mt-1">
-                          <Sparkles className="w-4 h-4 text-yellow-400" />
-                          <span className="text-yellow-400 text-sm font-medium">
-                            FREE Looksmaxxing Life-Changing eBook (Worth $47)
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className={`w-6 h-6 rounded-full border-2 transition-all duration-300 ${
-                      selectedMethod === "nowpayments" 
-                        ? "border-blue-400 bg-blue-400" 
-                        : "border-white/30"
-                    }`}>
-                      {selectedMethod === "nowpayments" && (
-                        <div className="w-full h-full rounded-full bg-blue-400 flex items-center justify-center">
-                          <div className="w-2 h-2 bg-white rounded-full" />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -355,7 +298,7 @@ const Checkout = () => {
                   <>
                     <Lock className="w-5 h-5" />
                     <span>
-                      Buy Now - ${selectedMethod === "cryptomus" || selectedMethod === "nowpayments" ? "12.99" : "14.99"}
+                      Buy Now - ${selectedMethod === "cryptomus" ? "12.99" : "14.99"}
                     </span>
                   </>
                 )}
