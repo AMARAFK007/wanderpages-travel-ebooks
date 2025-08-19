@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { ArrowLeft, Lock, Shield, Zap, Star, Sparkles } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const Checkout = () => {
   const [params] = useSearchParams();
@@ -45,9 +46,44 @@ const Checkout = () => {
 
     setIsProcessing(true);
     
-    await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate processing
-    toast.success("Redirecting to secure payment...");
-    setIsProcessing(false);
+    try {
+      const orderId = `order_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      const amount = selectedMethod === "gumroad" ? "14.99" : "12.99";
+      const successUrl = "https://drive.google.com/file/d/1CDjpMw15UiLq4cEnJiCFVSu7v3J9L_TM/view?usp=sharing";
+      const failUrl = `${window.location.origin}/checkout?sku=${product?.slug}&failed=true`;
+
+      console.log('Creating payment with Cryptomus...');
+      
+      const { data, error } = await supabase.functions.invoke('create-payment', {
+        body: {
+          amount: amount,
+          currency: 'USD',
+          order_id: orderId,
+          email: email,
+          success_url: successUrl,
+          fail_url: failUrl,
+        },
+      });
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      if (!data.success) {
+        throw new Error(data.error || 'Failed to create payment');
+      }
+
+      console.log('Payment created successfully, redirecting...');
+      
+      // Redirect to Cryptomus payment page
+      window.location.href = data.payment_url;
+      
+    } catch (error) {
+      console.error('Payment error:', error);
+      toast.error(error.message || "There was an error processing your payment. Please try again.");
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   const isValidEmail = email.includes("@") && email.includes(".");
