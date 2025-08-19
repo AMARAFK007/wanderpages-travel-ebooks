@@ -1,7 +1,7 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-import { createHash } from "https://deno.land/std@0.168.0/hash/mod.ts";
+import md5 from "https://esm.sh/blueimp-md5@2.19.0";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -47,7 +47,7 @@ serve(async (req) => {
 
     // Create signature for Cryptomus API (MD5 hash)
     const dataString = btoa(JSON.stringify(paymentData));
-    const signature = createHash("md5").update(dataString + apiKey).toString();
+    const signature = md5(dataString + apiKey);
 
     console.log('Creating payment with Cryptomus...');
 

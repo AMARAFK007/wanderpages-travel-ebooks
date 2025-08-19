@@ -1,6 +1,6 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createHash } from "https://deno.land/std@0.168.0/hash/mod.ts";
+import md5 from "https://esm.sh/blueimp-md5@2.19.0";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -28,7 +28,7 @@ serve(async (req) => {
     // Verify the webhook signature (MD5 hash)
     const receivedSign = req.headers.get('sign');
     const dataString = btoa(JSON.stringify(webhookData));
-    const expectedSignature = createHash("md5").update(dataString + apiKey).toString();
+    const expectedSignature = md5(dataString + apiKey);
 
     if (receivedSign !== expectedSignature) {
       console.error('Invalid webhook signature');
