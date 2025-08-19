@@ -31,7 +31,13 @@ export default {
 					"Cantarell",
 					"Helvetica Neue",
 					"sans-serif"
-				]
+				],
+				futuristic: [
+					"Space Grotesk",
+					"ui-sans-serif",
+					"system-ui",
+					"sans-serif",
+				],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
