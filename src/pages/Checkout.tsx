@@ -193,10 +193,14 @@ const Checkout = () => {
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center">
-                        <span className="text-black font-bold text-lg">G</span>
+                      <div className="w-14 h-14 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center">
+                        <span className="text-white font-bold text-xl">gum</span>
                       </div>
                       <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="font-bold text-lg text-pink-400">Gumroad</span>
+                          <span className="text-white/50 text-sm">• Trusted platform</span>
+                        </div>
                         <div className="flex items-center gap-2">
                           <span className="font-semibold text-lg">$14.99</span>
                           <span className="text-white/50 text-sm">Standard price</span>
@@ -238,6 +242,10 @@ const Checkout = () => {
                         <Bitcoin className="w-8 h-8 text-white" />
                       </div>
                       <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="font-bold text-lg text-orange-400">Cryptomus</span>
+                          <span className="text-white/50 text-sm">• Crypto payments</span>
+                        </div>
                         <div className="flex items-center gap-2">
                           <span className="font-semibold text-lg">$12.99</span>
                           <span className="text-emerald-400 text-sm font-medium">Save $2.00</span>
