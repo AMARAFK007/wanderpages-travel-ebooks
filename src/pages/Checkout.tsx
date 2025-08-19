@@ -238,8 +238,8 @@ const Checkout = () => {
                   
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center p-2">
-                        <img src="/lovable-uploads/4a4a5828-57f0-4836-9c92-eb3c6922f616.png" alt="Cryptomus" className="w-full h-full object-contain" />
+                      <div className="w-14 h-14 bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl flex items-center justify-center border border-white/10">
+                        <span className="text-white font-bold text-xs leading-tight">CRYPTO<br/>MUS</span>
                       </div>
                       <div>
                         <div className="flex items-center gap-2 mb-1">
