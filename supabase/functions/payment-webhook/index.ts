@@ -1,5 +1,6 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createHash } from "https://deno.land/std@0.168.0/hash/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -24,23 +25,10 @@ serve(async (req) => {
       throw new Error('Missing Cryptomus credentials');
     }
 
-    // Verify the webhook signature
+    // Verify the webhook signature (MD5 hash)
     const receivedSign = req.headers.get('sign');
     const dataString = btoa(JSON.stringify(webhookData));
-    
-    const expectedSignature = await crypto.subtle.importKey(
-      'raw',
-      new TextEncoder().encode(apiKey),
-      { name: 'HMAC', hash: 'SHA-256' },
-      false,
-      ['sign']
-    ).then(key => 
-      crypto.subtle.sign('HMAC', key, new TextEncoder().encode(dataString + merchantId))
-    ).then(signature => 
-      Array.from(new Uint8Array(signature))
-        .map(b => b.toString(16).padStart(2, '0'))
-        .join('')
-    );
+    const expectedSignature = createHash("md5").update(dataString + apiKey).toString();
 
     if (receivedSign !== expectedSignature) {
       console.error('Invalid webhook signature');

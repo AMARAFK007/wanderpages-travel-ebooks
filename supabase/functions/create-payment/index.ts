@@ -1,6 +1,7 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import { createHash } from "https://deno.land/std@0.168.0/hash/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -44,21 +45,9 @@ serve(async (req) => {
       customer_email: requestData.email,
     };
 
-    // Create signature for Cryptomus API
+    // Create signature for Cryptomus API (MD5 hash)
     const dataString = btoa(JSON.stringify(paymentData));
-    const signature = await crypto.subtle.importKey(
-      'raw',
-      new TextEncoder().encode(apiKey),
-      { name: 'HMAC', hash: 'SHA-256' },
-      false,
-      ['sign']
-    ).then(key => 
-      crypto.subtle.sign('HMAC', key, new TextEncoder().encode(dataString + merchantId))
-    ).then(signature => 
-      Array.from(new Uint8Array(signature))
-        .map(b => b.toString(16).padStart(2, '0'))
-        .join('')
-    );
+    const signature = createHash("md5").update(dataString + apiKey).toString();
 
     console.log('Creating payment with Cryptomus...');
 
